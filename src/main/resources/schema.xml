@@ -33,23 +33,23 @@
 	</schema>
 	<!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"
 		/> -->
-	<dataNode name="dn1" dataHost="localhost1" database="db1" />
-	<dataNode name="dn2" dataHost="localhost1" database="db2" />
-	<dataNode name="dn3" dataHost="localhost1" database="db3" />
+	<dataNode name="dn1" dataHost="mysql_cluster_node1" database="db1" />
+	<!--<dataNode name="dn2" dataHost="localhost1" database="db2" />-->
+	<!--<dataNode name="dn3" dataHost="localhost1" database="db3" />-->
 	<!--<dataNode name="dn4" dataHost="sequoiadb1" database="SAMPLE" />
 	 <dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
 	<dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
 	<dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
-	<dataHost name="localhost1" maxCon="1000" minCon="10" balance="0"
+	<dataHost name="mysql_cluster_node1" maxCon="1000" minCon="10" balance="0"
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
 		<!-- can have multi write hosts -->
-		<writeHost host="hostM1" url="localhost:3306" user="root"
+		<writeHost host="hostM1" url="mysql_cluster_node1:3306" user="root"
 				   password="123456">
 			<!-- can have multi read hosts -->
-			<readHost host="hostS2" url="192.168.1.200:3306" user="root" password="xxx" />
+			<readHost host="hostS2" url="mysql_cluster_node12:3306" user="root" password="xxx" />
 		</writeHost>
-		<writeHost host="hostS1" url="localhost:3316" user="root"
+		<writeHost host="hostS1" url="mysql_cluster_node1:3316" user="root"
 				   password="123456" />
 		<!-- <writeHost host="hostM2" url="localhost:3316" user="root" password="123456"/> -->
 	</dataHost>
